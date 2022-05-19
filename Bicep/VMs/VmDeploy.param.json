@@ -1,0 +1,35 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "vmName": {
+            "value": "<VMNAME>"
+        },
+        "vmSize": {
+            "value": "Standard_B2ms"
+        },
+        "domain": {
+            "value": ""
+        },
+        "subnetName": {
+            "value": ""
+        },
+        "tags": {
+            "value": {
+              "Demo": "BicepTalk",
+              "Country": "US"
+            }
+        },
+        "adminPassword": {
+            "reference": {
+                "keyVault": {
+                    "id": "/subscriptions/0e084962-5258-4f01-8572-66e886a77d61/resourceGroups/SharedResources/providers/Microsoft.KeyVault/vaults/ChrimenyIaC"
+                },
+                "secretName": "LocalAdminPassword"
+            },
+            "metadata": {
+                "description": "Password from ChrimenyIaC.  DO NOT CHANGE THIS!!"
+            }
+        }
+    }
+}

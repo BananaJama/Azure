@@ -1,0 +1,17 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "vmName": {
+            "value": "DeleteMe"
+        },
+        "adminPassword": {
+            "reference": {
+                "keyVault": {
+                    "id": "/subscriptions/1815556e-65a6-440f-b24b-a8a36fab353d/resourceGroups/mazcloudsvc-keyvault/providers/Microsoft.KeyVault/vaults/MAZKeyVault-SysEng"
+                },
+                "secretName": "AzureLocalAdminPassword"
+            }
+        }
+    }
+}
