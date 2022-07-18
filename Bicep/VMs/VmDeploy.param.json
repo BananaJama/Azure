@@ -3,20 +3,17 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "vmName": {
-            "value": "<VMNAME>"
+            "value": "JeremyTest"
         },
         "vmSize": {
             "value": "Standard_B2ms"
         },
-        "domain": {
-            "value": ""
-        },
-        "subnetName": {
-            "value": ""
+        "adminUsername": {
+            "value": "ChrimenyAdmin"
         },
         "tags": {
             "value": {
-              "Demo": "BicepTalk",
+              "Company": "Chrimeny",
               "Country": "US"
             }
         },
@@ -28,7 +25,7 @@
                 "secretName": "LocalAdminPassword"
             },
             "metadata": {
-                "description": "Password from ChrimenyIaC.  DO NOT CHANGE THIS!!"
+                "description": "Password from KeyVaul-SysEng.  DO NOT CHANGE THIS!!"
             }
         }
     }
