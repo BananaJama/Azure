@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.8.9.13224",
-      "templateHash": "6263628631136069175"
+      "templateHash": "6531708999851285478"
     }
   },
   "parameters": {
@@ -134,12 +134,67 @@
       "dependsOn": [
         "[resourceId('Microsoft.Network/networkInterfaces', variables('nicName'))]"
       ]
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2020-10-01",
+      "name": "[format('Backup{0}', parameters('vmName'))]",
+      "resourceGroup": "SharedResources",
+      "properties": {
+        "expressionEvaluationOptions": {
+          "scope": "inner"
+        },
+        "mode": "Incremental",
+        "parameters": {
+          "vmName": {
+            "value": "[parameters('vmName')]"
+          },
+          "vmRG": {
+            "value": "[resourceGroup().name]"
+          }
+        },
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "metadata": {
+            "_generator": {
+              "name": "bicep",
+              "version": "0.8.9.13224",
+              "templateHash": "13177326886893460498"
+            }
+          },
+          "parameters": {
+            "vmName": {
+              "type": "string"
+            },
+            "vmRG": {
+              "type": "string"
+            },
+            "vaultName": {
+              "type": "string",
+              "defaultValue": "ChrimenyBackups"
+            }
+          },
+          "variables": {
+            "backupFabric": "Azure",
+            "backupPolicyName": "AzureDailyBackup",
+            "protectionContainer": "[format('iaasvmcontainer;iaasvmcontainerv2;{0};{1}', parameters('vmRG'), parameters('vmName'))]",
+            "protectedItem": "[format('vm;iaasvmcontainerv2;{0};{1}', parameters('vmRG'), parameters('vmName'))]"
+          },
+          "resources": [
+            {
+              "type": "Microsoft.RecoveryServices/vaults/backupFabrics/protectionContainers/protectedItems",
+              "apiVersion": "2022-03-01",
+              "name": "[format('{0}/{1}/{2}/{3}', parameters('vaultName'), variables('backupFabric'), variables('protectionContainer'), variables('protectedItem'))]",
+              "properties": {
+                "protectedItemType": "Microsoft.Compute/virtualMachines",
+                "policyId": "[format('{0}/backupPolicies/{1}', resourceId('Microsoft.RecoveryServices/vaults', parameters('vaultName')), variables('backupPolicyName'))]",
+                "sourceResourceId": "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('vmRG')), 'Microsoft.Compute/virtualMachines', parameters('vmName'))]"
+              }
+            }
+          ]
+        }
+      }
     }
-  ],
-  "outputs": {
-    "privateIP": {
-      "type": "string",
-      "value": "[reference(resourceId('Microsoft.Network/networkInterfaces', variables('nicName'))).ipConfigurations[0].properties.privateIPAddress]"
-    }
-  }
+  ]
 }

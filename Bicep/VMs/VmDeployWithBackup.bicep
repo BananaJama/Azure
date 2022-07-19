@@ -32,10 +32,6 @@ param adminUsername string
 var subnetName = 'SVNet-Core'
 var nicName = '${vmName}-PrimaryNIC'
 
-resource recoveryVault 'Microsoft.RecoveryServices/vaults@2022-04-01' existing = {
-  name: 'backups'
-}
-
 resource vnet 'Microsoft.Network/virtualNetworks@2021-05-01' existing = {
   name: 'VNet-ChrimenyCore'
   scope: resourceGroup('SharedResources')
@@ -107,4 +103,11 @@ resource vm 'Microsoft.Compute/virtualMachines@2021-11-01' = {
   }
 }
 
-output privateIP string = nic.properties.ipConfigurations[0].properties.privateIPAddress
+module enableBackup '../RecoveryServices/enableVMBackup.bicep' = {
+  name: 'Backup${vmName}'
+  scope: resourceGroup('SharedResources')
+  params: {
+    vmName: vmName
+    vmRG: resourceGroup().name
+  }
+}
