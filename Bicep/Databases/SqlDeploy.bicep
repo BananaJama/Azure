@@ -4,7 +4,7 @@ param location string = resourceGroup().location
 @description('Tags object to apply to VMs')
 param tags object
 
-param sqlServerName string = 'MAZ${uniqueString(location)}'
+param sqlServerName string = 'Chr-${uniqueString(location)}'
 param sqlServerDbName string = 'AdvWks'
 
 @secure()
