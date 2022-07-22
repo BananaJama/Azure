@@ -111,3 +111,5 @@ module enableBackup '../RecoveryServices/enableVMBackup.bicep' = {
     vmRG: resourceGroup().name
   }
 }
+
+output privateIP string = nic.properties.ipConfigurations[0].properties.privateIPAddress
