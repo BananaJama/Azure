@@ -1,0 +1,30 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "adminUsername": {
+            "value": "rtpsug.admin"
+        }
+        ,
+        "adminPassword": {
+            "value": "RTPSUG Rocks"
+        }
+        ,
+        "publicIpName": {
+            "value": "PubIP-RTPSUG"
+        }
+        ,
+        "OSVersion": {
+            "value": "2022-datacenter-azure-edition"
+        }
+        ,
+        "vmSize": {
+            "value": "Standard_B4ms"
+        }
+        ,
+        "vmName": {
+            "value": "RTPSUG"
+        }
+
+    }
+}

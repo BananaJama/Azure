@@ -1,0 +1,42 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "bicep",
+      "version": "0.8.9.13224",
+      "templateHash": "3502698812506082161"
+    }
+  },
+  "parameters": {
+    "location": {
+      "type": "string",
+      "defaultValue": "eastus2"
+    }
+  },
+  "variables": {
+    "resGrpName": "RTPSUG-Demos"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Resources/resourceGroups",
+      "apiVersion": "2021-04-01",
+      "name": "[variables('resGrpName')]",
+      "location": "[parameters('location')]"
+    }
+  ],
+  "outputs": {
+    "myVarOutput": {
+      "type": "string",
+      "value": "[variables('resGrpName')]"
+    },
+    "myParamOutput": {
+      "type": "string",
+      "value": "[parameters('location')]"
+    },
+    "resGrpLocation": {
+      "type": "string",
+      "value": "[reference(subscriptionResourceId('Microsoft.Resources/resourceGroups', variables('resGrpName')), '2021-04-01', 'full').location]"
+    }
+  }
+}

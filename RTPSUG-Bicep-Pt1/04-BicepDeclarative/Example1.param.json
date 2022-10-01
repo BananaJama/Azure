@@ -9,10 +9,5 @@
         "storageSKU": {
             "value": "Standard_LRS"
         }
-        ,
-        "location": {
-            "value": "westus"
-        }
-
     }
 }

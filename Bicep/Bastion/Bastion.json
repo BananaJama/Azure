@@ -4,8 +4,8 @@
   "metadata": {
     "_generator": {
       "name": "bicep",
-      "version": "0.5.6.12127",
-      "templateHash": "14858501775991988869"
+      "version": "0.8.9.13224",
+      "templateHash": "3586484606259915582"
     }
   },
   "parameters": {
@@ -18,7 +18,7 @@
     },
     "vNetName": {
       "type": "string",
-      "defaultValue": "VNET-Chrimeny",
+      "defaultValue": "VNET-ChrimenyCore",
       "metadata": {
         "description": "Virtual network name"
       }
@@ -32,14 +32,14 @@
     },
     "publicIpName": {
       "type": "string",
-      "defaultValue": "pip-bastion",
+      "defaultValue": "PIP-Bastion",
       "metadata": {
         "description": "The name of the Bastion public IP address"
       }
     },
     "bastionHostName": {
       "type": "string",
-      "defaultValue": "bastion-jumpbox",
+      "defaultValue": "Bastion-Jumpbox",
       "metadata": {
         "description": "The name of the Bastion host"
       }
@@ -120,11 +120,5 @@
         "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIpName'))]"
       ]
     }
-  ],
-  "outputs": {
-    "bastionId": {
-      "type": "string",
-      "value": "[resourceId('Microsoft.Network/bastionHosts', parameters('bastionHostName'))]"
-    }
-  }
+  ]
 }

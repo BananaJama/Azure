@@ -3,7 +3,7 @@
 param location string = resourceGroup().location
 
 @description('Virtual network name')
-param vNetName string = 'VNET-ChrimenyPublic'
+param vNetName string = 'VNET-ChrimenyCore'
 
 @description('The address prefix to use for the Bastion subnet')
 param addressPrefix string = '172.18.0.0/24'
