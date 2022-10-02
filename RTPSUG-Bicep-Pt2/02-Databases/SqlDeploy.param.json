@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "sqlServerName": {
-            "value": "MAZJeremyTestSqlSvr"
+            "value": "RTPSUG-SQL"
         },
         "tags": {
             "value": {
@@ -19,7 +19,7 @@
                 "secretName": "LocalAdminPassword"
             },
             "metadata": {
-                "description": "Password from ChrimenyIaC.  DO NOT CHANGE THIS!!"
+                "description": "Password from ChrimenyIaC."
             }
         }
     }
